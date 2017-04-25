@@ -1,6 +1,6 @@
 //Orion Guan
-//April 17th
-//Ported from DotFlipGame.java, with changes.
+//April 17th, 2017
+//Ported from DotFlipGame.java, with implementation handled differently.
 
 #include <iostream>
 #include <vector>
@@ -120,18 +120,15 @@ public:
 			int input;
 			cout << numberGuide << endl << gameStateToString(gameState) << endl;
 			cin >> input;
-			if (input > gameSize)
+			if (input >= 1 && input <= gameSize)
 			{
-				cout << "Too high an input!" << endl;
-				return;
+				gameState = flip(gameState, input - 1);
+				moveCounter++;
 			}
-			if (input < 1)
+			else
 			{
-				cout << "Too low an input!" << endl;
-				return;
+				cout << "Pick a number in the range shown!" << endl;
 			}
-			gameState = flip(gameState, input - 1);
-			moveCounter++;
 		}
 
 		cout << gameStateToString(gameState) << endl << "You won! It took you "
